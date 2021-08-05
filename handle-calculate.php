@@ -12,7 +12,6 @@ function checknumric(int|float $num1, int|float $num2): bool
 // calculate
 function calc(int|float $num1, int|float $num2, string $operation): int|float
 {
-    $result = 0;
     if (checknumric($num1, $num2)) {
         
         switch ($operation) {
@@ -28,6 +27,8 @@ function calc(int|float $num1, int|float $num2, string $operation): int|float
             case 'div':
                 $result = $num1 / $num2;
                 break;
+            default:
+            $result="";
         }
     }
     return $result;
@@ -35,7 +36,7 @@ function calc(int|float $num1, int|float $num2, string $operation): int|float
 // handle and redirect
 function handle(int|float $num1, int|float $num2, string $operation):void{
     $result="pls choose one of the basic mathmatical operations";
-    if(calc($num1,$num2,$operation)!=0){
+    if(calc($num1,$num2,$operation)!=""){
         $result=calc($num1,$num2,$operation);
     }
     header("location: calculate.php?result=$result");
